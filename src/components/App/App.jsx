@@ -12,6 +12,12 @@ function App() {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" }
   ]);
 
+  const addContact = newContact => {
+    setUser(prevContacts => {
+      return [...prevContacts, newContact];
+    });
+  };
+
   const [filter, setFilter] = useState("");
 
   const filterContacts = users.filter(user =>
@@ -23,7 +29,7 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm users={users} onAdd={addContact} />
       <SearchBox value={filter} onFilter={setFilter} />
       <ContactList usersData={filterContacts} />
     </div>
