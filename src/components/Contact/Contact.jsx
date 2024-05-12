@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import css from "./Contact.module.css";
 
-export default function Contact({ userData: { name, number } }) {
+export default function Contact({ userData: { id, name, number }, onDelete }) {
   return (
     <div className={clsx(css.itemWrapper)}>
       <ul className={clsx(css.contactWrapper)}>
@@ -12,7 +12,11 @@ export default function Contact({ userData: { name, number } }) {
           <p>{number}</p>
         </li>
       </ul>
-      <button className={clsx(css.button)} type="button">
+      <button
+        className={clsx(css.button)}
+        type="button"
+        onClick={() => onDelete(id)}
+      >
         Delete
       </button>
     </div>
