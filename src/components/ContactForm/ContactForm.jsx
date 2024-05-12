@@ -61,11 +61,11 @@ export default function ContactForm({ onAdd }) {
             className={clsx(css.number)}
             id={`${id}-number`}
             name="number"
-            type="number"
+            type="tel"
           />
           <ErrorMessage
             className={clsx(css.error)}
-            name="name"
+            name="number"
             component="span"
           />
         </div>
