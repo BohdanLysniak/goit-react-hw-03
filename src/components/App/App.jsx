@@ -24,12 +24,10 @@ function App() {
     user.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  setUser;
-
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm users={users} onAdd={addContact} />
+      <ContactForm onAdd={addContact} />
       <SearchBox value={filter} onFilter={setFilter} />
       <ContactList usersData={filterContacts} />
     </div>

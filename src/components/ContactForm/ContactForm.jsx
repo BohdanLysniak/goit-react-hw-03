@@ -1,12 +1,24 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import clsx from "clsx";
 import css from "./ContactForm.module.css";
 
 export default function ContactForm({ onAdd }) {
   const id = useId();
+
+  const phone = /^\d{3}-\d{2}-\d{2}$/;
+
+  const UserSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Must be more than 3 characters!")
+      .max(50, "Must be less than 50 characters!")
+      .required("Required!"),
+    number: Yup.string()
+      .matches(phone, "Required format ххх-хх-хх!")
+      .required("Required!")
+  });
 
   const handleSubmit = (values, actions) => {
     const newContact = {
@@ -20,23 +32,43 @@ export default function ContactForm({ onAdd }) {
 
   return (
     <Formik
-      initialValues={{ id: "", name: "", number: "" }}
+      initialValues={{ name: "", number: "" }}
       onSubmit={handleSubmit}
+      validationSchema={UserSchema}
     >
       <Form className={clsx(css.form)}>
-        <label className={clsx(css.label)} htmlFor={`${id}-name`}>
-          Name
-        </label>
-        <Field className={clsx(css.field)} id={`${id}-name`} name="name" />
-        <ErrorMessage
-          className={clsx(css.error)}
-          name="name"
-          component="span"
-        />
-        <label className={clsx(css.number)} htmlFor={`${id}-number`}>
-          Number
-        </label>
-        <Field className={clsx(css.number)} id={`${id}-number`} name="number" />
+        <div className={clsx(css.fieldNameWrapper)}>
+          <label className={clsx(css.label)} htmlFor={`${id}-name`}>
+            Name
+          </label>
+          <Field
+            className={clsx(css.field)}
+            id={`${id}-name`}
+            name="name"
+            type="text"
+          />
+          <ErrorMessage
+            className={clsx(css.error)}
+            name="name"
+            component="span"
+          />
+        </div>
+        <div className={clsx(css.fieldNumberWrapper)}>
+          <label className={clsx(css.number)} htmlFor={`${id}-number`}>
+            Number
+          </label>
+          <Field
+            className={clsx(css.number)}
+            id={`${id}-number`}
+            name="number"
+            type="number"
+          />
+          <ErrorMessage
+            className={clsx(css.error)}
+            name="name"
+            component="span"
+          />
+        </div>
         <button className={clsx(css.button)} type="submit">
           Add contact
         </button>
