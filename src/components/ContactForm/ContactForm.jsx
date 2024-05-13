@@ -37,7 +37,7 @@ export default function ContactForm({ onAdd }) {
       validationSchema={UserSchema}
     >
       <Form className={clsx(css.form)}>
-        <div className={clsx(css.fieldNameWrapper)}>
+        <div className={clsx(css.fieldWrapper)}>
           <label className={clsx(css.label)} htmlFor={`${id}-name`}>
             Name
           </label>
@@ -53,12 +53,12 @@ export default function ContactForm({ onAdd }) {
             component="span"
           />
         </div>
-        <div className={clsx(css.fieldNumberWrapper)}>
-          <label className={clsx(css.number)} htmlFor={`${id}-number`}>
+        <div className={clsx(css.fieldWrapper)}>
+          <label className={clsx(css.label)} htmlFor={`${id}-number`}>
             Number
           </label>
           <Field
-            className={clsx(css.number)}
+            className={clsx(css.field)}
             id={`${id}-number`}
             name="number"
             type="tel"

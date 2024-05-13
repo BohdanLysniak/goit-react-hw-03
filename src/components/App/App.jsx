@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import clsx from "clsx";
+import css from "./App.module.css";
 import ContactForm from "../ContactForm/ContactForm.jsx";
 import ContactList from "../ContactList/ContactList.jsx";
 import SearchBox from "../SearchBox/SearchBox.jsx";
@@ -37,8 +38,8 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <div className={clsx(css.appWrapper)}>
+      <h1 className={clsx(css.title)}>Phonebook</h1>
       <ContactForm onAdd={addContact} />
       <SearchBox value={filter} onFilter={setFilter} />
       <ContactList usersData={filterContacts} onDelete={deleteContact} />
