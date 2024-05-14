@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import { HiOutlineUser } from "react-icons/hi";
+import { HiPhone } from "react-icons/hi";
 import css from "./Contact.module.css";
 
 export default function Contact({ userData: { id, name, number }, onDelete }) {
@@ -6,10 +8,16 @@ export default function Contact({ userData: { id, name, number }, onDelete }) {
     <div className={clsx(css.itemWrapper)}>
       <ul className={clsx(css.contactWrapper)}>
         <li className={clsx(css.nameContact)}>
-          <p>{name}</p>
+          <p className={clsx(css.text)}>
+            <HiOutlineUser className={clsx(css.icon)} size="20" />
+            {name}
+          </p>
         </li>
         <li className={clsx(css.numberContact)}>
-          <p>{number}</p>
+          <p className={clsx(css.text)}>
+            <HiPhone className={clsx(css.icon)} size="20" />
+            {number}
+          </p>
         </li>
       </ul>
       <button
